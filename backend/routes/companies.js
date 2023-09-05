@@ -1,3 +1,5 @@
+// companies.js file from backend
+
 "use strict";
 
 /** Routes for companies. */

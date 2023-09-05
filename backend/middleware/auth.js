@@ -1,3 +1,5 @@
+// auth.js file from backend
+
 "use strict";
 
 /** Convenience middleware to handle common auth cases in routes. */
