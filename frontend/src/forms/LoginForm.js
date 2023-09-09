@@ -2,7 +2,7 @@
 
 import React, {useState} from "react";
 
-
+import JoblyApi from "../api/userapi";
 
 const LoginForm = () => {
 
@@ -21,11 +21,20 @@ const LoginForm = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const {username, password} = formData;
+
+        const response = await JoblyApi.request("auth/token", formData, "post")
+
+        console.log("Success!", response);
         setFormData(InitialState)
-        alert(`the username is ${formData.username} and the password is ${formData.password}`)
+
+        try{
+
+        }catch(error){
+            console.error("registration error", error)
+        }
+
     }
 
     return(

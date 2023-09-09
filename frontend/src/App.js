@@ -1,13 +1,14 @@
 import './App.css';
 import Navbar from './Navbar';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import Home from './Home';
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
+import Home from './homepage/Home';
+import LoginForm from './forms/LoginForm';
+import SignUpForm from './forms/SignUpForm';
 import Profile from './Profile';
-import CompanyList from "./CompanyList"; // Make sure to import the correct path
-import CompanyDetails from "./CompanyDetails";
-import JobList from './JobDetails';
+import CompanyList from './companies/CompanyList'; // Make sure to import the correct path
+import CompanyDetails from "./companies/CompanyDetails";
+import JobList from './jobs/JobDetails';
+// import Navigation from './Navigation';
 
 function App() {
   return (

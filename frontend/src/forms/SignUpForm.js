@@ -1,16 +1,17 @@
 import React, {useState} from "react";
-
+import axios from "axios";
 
 const SignUpForm = () => {
 
     const InitialState = {
         username: "", 
         password: "", 
-        firstname: "", 
-        lastname: "", 
+        firstName: "", 
+        lastName: "", 
         email: ""
     }
 
+    const API_URL = "http://localhost:3001";
 
     const [formData, setFormData] = useState(InitialState);
 
@@ -23,15 +24,30 @@ const SignUpForm = () => {
 
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const {username, password, firstname, lastname, email} = formData;
-        setFormData(InitialState);
-        alert(`the username is ${username}, 
-        the password is ${password}, 
-        the firstname is ${firstname},
-        the last name is ${lastname},
-        the email is ${email}`)
+
+        try {
+
+            const response = await axios.post (`${API_URL}/auth/register`, formData)
+            console.log("registration successful!", response);
+
+            // const {username, password, firstName, lastName, email} = formData;
+            setFormData(InitialState);
+    
+    
+            // alert(`the username is ${username}, 
+            // the password is ${password}, 
+            // the firstname is ${firstName},
+            // the last name is ${lastName},
+            // the email is ${email}`)
+
+
+
+        } catch (error) {
+            console.error(error)
+        }
+     
     }
     return(
         <form onSubmit={handleSubmit}>
@@ -56,23 +72,23 @@ const SignUpForm = () => {
                 onChange={handleChange}
             />
 
-            <label htmlFor="firstname">First Name</label>
+            <label htmlFor="firstName">First Name</label>
             <input 
-                id="firstname"
+                id="firstName"
                 type="text"
-                name="firstname"
-                placeholder="firstname"
-                value={formData.firstname}
+                name="firstName"
+                placeholder="firstName"
+                value={formData.firstName}
                 onChange={handleChange}
             />
 
-            <label htmlFor="lastname">Last Name</label>
+            <label htmlFor="lastName">Last Name</label>
             <input 
-                id="lastname"
+                id="lastName"
                 type="text"
-                name="lastname"
-                placeholder="lastname"
-                value={formData.lastname}
+                name="lastName"
+                placeholder="lastName"
+                value={formData.lastName}
                 onChange={handleChange}
             />
 
