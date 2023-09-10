@@ -11,6 +11,8 @@ const Navbar = () => {
             <NavLink exact to ="/login"> Log In </NavLink>
             <NavLink exact to ="/signup"> Sign Up </NavLink>
             <NavLink exact to ="/profile"> Profile </NavLink>
+            <NavLink exact to ="/logout"> Log Out </NavLink>
+
         </nav>
     )
 }

@@ -31,19 +31,9 @@ const SignUpForm = () => {
 
             const response = await axios.post (`${API_URL}/auth/register`, formData)
             console.log("registration successful!", response);
-
-            // const {username, password, firstName, lastName, email} = formData;
             setFormData(InitialState);
+
     
-    
-            // alert(`the username is ${username}, 
-            // the password is ${password}, 
-            // the firstname is ${firstName},
-            // the last name is ${lastName},
-            // the email is ${email}`)
-
-
-
         } catch (error) {
             console.error(error)
         }
