@@ -27,6 +27,14 @@ const LoginForm = () => {
         const response = await JoblyApi.request("auth/token", formData, "post")
 
         console.log("Success!", response);
+
+        const token = response.token
+
+        localStorage.setItem('token', token);
+
+        console.log(localStorage.getItem('token'));
+
+
         setFormData(InitialState)
 
         try{

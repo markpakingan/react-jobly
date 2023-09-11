@@ -8,7 +8,6 @@ import Dashboard from './Dashboard';
 import LoginForm from './forms/LoginForm';
 import SignUpForm from './forms/SignUpForm';
 import Profile from './Profile';
-import LogOutForm from './forms/LogOutForm';
 import CompanyList from './companies/CompanyList'; // Make sure to import the correct path
 import CompanyDetails from "./companies/CompanyDetails";
 import JobList from './jobs/JobDetails';
@@ -16,10 +15,25 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
 
-  // const [token, setToken] = useState(null);
+  const [token, setToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [currentUSer, setCurrentUser] = useState(null);
 
-  
+  // useEffect(() => {
+  //   if (token) {
+    
+  //     fetchUserData(token)
+  //       .then((userData) => {
+  //         setCurrentUser(userData);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error fetching user data:', error);
+  //       });
+  //   } else {
+  //     // If there is no token (user is not authenticated), clear currentUser state
+  //     setCurrentUser(null);
+  //   }
+  // }, [token]);
 
   
   return (
@@ -44,8 +58,7 @@ function App() {
               <Route exact path="/login" element={<LoginForm />}/>
               <Route exact path="/signup" element={<SignUpForm />}/>
               <Route exact path="/profile" element={<Profile />}/>
-              <Route exact path="/logout" element={<LogOutForm />}/>
-
+              
             </Routes>
       </BrowserRouter>
       
