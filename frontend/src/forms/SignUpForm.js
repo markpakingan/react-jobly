@@ -38,7 +38,7 @@ const SignUpForm = ({setIsAuthenticated}) => {
 
             setIsAuthenticated(true)
 
-            navigate("/dashboard");
+            navigate("/");
 
     
         } catch (error) {

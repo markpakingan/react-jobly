@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 import JoblyApi from "../api/userapi";
 
-const LoginForm = ({setIsAuthenticated}) => {
+const LoginForm = ({setIsAuthenticated, setUsername}) => {
 
     const navigate = useNavigate();
 
@@ -27,19 +27,24 @@ const LoginForm = ({setIsAuthenticated}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await JoblyApi.request("auth/token", formData, "post")
+        const response = await JoblyApi.request("auth/token", formData, "post");
 
         console.log("Success!", response);
-        console.log(localStorage.getItem('token'));
+
+        // console.log(localStorage.getItem('token'));
 
         const token = response.token
+        const username = formData.username
 
         localStorage.setItem('token', token);
+        JoblyApi.setToken(token);
 
-        setFormData(InitialState)
-        setIsAuthenticated(true)
+        setFormData(InitialState);
+        setIsAuthenticated(true);
+        setUsername(username);
 
-        navigate("/dashboard");
+        navigate("/");
+        
 
         try{
 

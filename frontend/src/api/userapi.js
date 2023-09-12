@@ -45,6 +45,24 @@ class JoblyApi {
   }
 
   // obviously, you'll add a lot here ...
+
+  static setToken(token){
+    JoblyApi.token=token;
+  }
+
+
+  // for testing purposes
+  static async getUserInfo(username) {
+    try {
+      const response = await this.request(`users/${username}`);
+      return response.user; 
+    } catch (error) {
+      console.error("Error loading user information", error);
+      throw error;
+    }
+  }
+  
+  
 }
 
 // for now, put token ("testuser" / "password" on class)
