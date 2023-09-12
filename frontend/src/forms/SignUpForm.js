@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const SignUpForm = () => {
+const SignUpForm = ({setIsAuthenticated}) => {
+
+    const navigate = useNavigate();
 
     const InitialState = {
         username: "", 
@@ -33,6 +36,10 @@ const SignUpForm = () => {
             console.log("registration successful!", response);
             setFormData(InitialState);
 
+            setIsAuthenticated(true)
+
+            navigate("/dashboard");
+
     
         } catch (error) {
             console.error(error)
@@ -55,7 +62,7 @@ const SignUpForm = () => {
             <label htmlFor="password">Password</label>
             <input 
                 id="password"
-                type="text"
+                type="password"
                 name="password"
                 placeholder="password"
                 value={formData.password}
@@ -85,7 +92,7 @@ const SignUpForm = () => {
             <label htmlFor="email">Email</label>
             <input 
                 id="email"
-                type="text"
+                type="email"
                 name="email"
                 placeholder="email"
                 value={formData.email}

@@ -1,10 +1,13 @@
 // LoginForm.js file from Frontend
 
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 import JoblyApi from "../api/userapi";
 
-const LoginForm = () => {
+const LoginForm = ({setIsAuthenticated}) => {
+
+    const navigate = useNavigate();
 
     const InitialState = {
         username: "", 
@@ -27,15 +30,16 @@ const LoginForm = () => {
         const response = await JoblyApi.request("auth/token", formData, "post")
 
         console.log("Success!", response);
+        console.log(localStorage.getItem('token'));
 
         const token = response.token
 
         localStorage.setItem('token', token);
 
-        console.log(localStorage.getItem('token'));
-
-
         setFormData(InitialState)
+        setIsAuthenticated(true)
+
+        navigate("/dashboard");
 
         try{
 
@@ -60,7 +64,7 @@ const LoginForm = () => {
             <label htmlFor="password"> Password</label>
             <input 
                 id="password"
-                type="text"
+                type="password"
                 name="password"
                 placeholder="password"
                 value={formData.password}
@@ -74,3 +78,5 @@ const LoginForm = () => {
 
 
 export default LoginForm;
+
+
