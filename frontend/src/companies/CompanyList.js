@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+
 
 const APICOMPANYLIST = "http://localhost:3001/companies";
 
-const CompanyList = () => {
+const CompanyList = ({isAuthenticated}) => {
   const [companies, setCompanies] = useState([]);
+
+  const navigate = useNavigate();
 
   // Fetch data and update state
   useEffect(() => {
@@ -24,14 +27,23 @@ const CompanyList = () => {
 
   return (
     <div>
-      <h1>Company List</h1>
-      <ul>
-        {companies.map((company) => (
-          <li key={company.handle}>
-            <Link to ={`/companies/${company.handle}`}>{company.name}</Link>
-          </li>
-        ))}
-      </ul>
+
+      {isAuthenticated ? (
+        <div>
+              <h1>Company List</h1>
+              <ul>
+                {companies.map((company) => (
+                  <li key={company.handle}>
+                    <Link to ={`/companies/${company.handle}`}>{company.name}</Link>
+                  </li>
+                ))}
+              </ul>
+        </div>
+      ):(
+        navigate("/")
+      )}
+    
+     
     </div>
   );
 };

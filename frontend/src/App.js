@@ -30,9 +30,9 @@ function App() {
         <Navbar isAuthenticated={isAuthenticated} handleLogOut={handleLogOut} />
         <Routes>
           <Route exact path="/" element={<Home isAuthenticated={isAuthenticated} userName={userName}/>} />
-          <Route exact path="/companies" element={<CompanyList />} />
+          <Route exact path="/companies" element={<CompanyList isAuthenticated={isAuthenticated}/>} />
           <Route exact path="/companies/:handle" element={<CompanyDetails />} />
-          <Route exact path="/jobs" element={<JobList />} />
+          <Route exact path="/jobs" element={<JobList isAuthenticated={isAuthenticated}/>} />
           <Route exact path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} 
             setUsername={setUsername} />} />
           <Route exact path="/signup" element={<SignUpForm setIsAuthenticated={setIsAuthenticated} />} />

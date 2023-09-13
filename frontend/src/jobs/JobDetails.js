@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 
 const APICOMPANYLIST = "http://localhost:3001/jobs";
 
-const JobList = () => {
+const JobList = ({isAuthenticated}) => {
 
 const [jobData, setJobData] = useState([])
+const navigate = useNavigate();
 
 useEffect(()=>{
     async function fetchJobData(){
@@ -24,26 +27,37 @@ useEffect(()=>{
 
 return(
     <div>
-        <h1>Job List</h1>
-        <ul>
-            {jobData.map((job)=>(
-                <li key={job.id}>
-                    <div>
-                        {job.title}
-                    </div>
+        {isAuthenticated ? (
+            <div>
 
-                    <div>
-                        {job.salary}
-                    </div>
+            <h1>Job List</h1>
+            <ul>
 
-                    <div>
-                        {job.companyName}
-                    </div>
+                {jobData.map((job)=>(
+                    <li key={job.id}>
+                        <div>
+                            {job.title}
+                        </div>
+
+                        <div>
+                            {job.salary}
+                        </div>
+
+                        <div>
+                            {job.companyName}
+                        </div>
 
 
-                </li>
-            ))}
-        </ul>
+                    </li>
+                ))}
+            </ul>
+            </div>
+        ): (
+        
+                navigate("/")
+
+        )}
+        
     </div>
 
 )
