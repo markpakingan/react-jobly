@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./home.css";
+
 
 
 const Home = ({isAuthenticated, userName}) => {
     return (
-        <div>
+        <div className="home-div">
             {isAuthenticated? (
                 <>
                     <h1> JOBLY</h1>

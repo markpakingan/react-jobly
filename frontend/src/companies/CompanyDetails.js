@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "./companyDetails.css"
 
 const APICOMPANYLIST = "http://localhost:3001/companies";
 
 const CompanyDetails = () => {
   const { handle } = useParams();
   const [details, setDetails] = useState(null);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    window.location.href = "http://localhost:3000/companies";
+  }
 
   useEffect(() => {
     async function getCompanyDetails() {
@@ -25,7 +31,7 @@ const CompanyDetails = () => {
   }, [handle]);
 
   return (
-    <div>
+    <div className="companyDetails-div">
       <h1>Company Details</h1>
       {details && (
         <div>
@@ -41,6 +47,8 @@ const CompanyDetails = () => {
                 <div>
                     Equity: {job.equity} 
                 </div>
+
+                <button onClick={handleClick}>Back</button>
               </li>
             ))}
           </ul>

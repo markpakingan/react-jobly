@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
+import "./companyList.css";
+
 
 
 const APICOMPANYLIST = "http://localhost:3001/companies";
@@ -26,7 +28,7 @@ const CompanyList = ({isAuthenticated}) => {
   }, []);
 
   return (
-    <div>
+    <div className="companyList-div">
 
       {isAuthenticated ? (
         <div>

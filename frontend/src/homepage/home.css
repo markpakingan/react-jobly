@@ -1,0 +1,10 @@
+.home-div {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; /* Center items vertically */
+    align-items: center; 
+    text-align: center; 
+    height: 100vh; 
+  }
+  

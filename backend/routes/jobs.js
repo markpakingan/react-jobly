@@ -24,6 +24,7 @@ const router = express.Router({ mergeParams: true });
  * Authorization required: admin
  */
 
+
 router.post("/", ensureAdmin, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, jobNewSchema);
@@ -126,5 +127,26 @@ router.delete("/:id", ensureAdmin, async function (req, res, next) {
   }
 });
 
+
+//added for testing purposes
+router.post("/:id/apply", ensureAuthenticated, async function (req, res, next) {
+  try {
+    const jobId = req.params.id;
+    const username = res.locals.user.username;
+
+    // Check if the user has already applied for this job
+    const result = await User.hasApplied(username, jobId);
+    if (result) {
+      return res.status(400).json({ error: "You have already applied for this job." });
+    }
+
+    // Apply for the job
+    await User.applyToJob(username, jobId);
+
+    return res.json({ applied: jobId });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 module.exports = router;

@@ -2,10 +2,10 @@
 
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-
+import "./login-form.css";
 import JoblyApi from "../api/userapi";
 
-const LoginForm = ({setIsAuthenticated, setUsername}) => {
+const LoginForm = ({setIsAuthenticated, setUsername, setToken}) => {
 
     const navigate = useNavigate();
 
@@ -15,6 +15,8 @@ const LoginForm = ({setIsAuthenticated, setUsername}) => {
     }
 
     const [formData, setFormData] = useState(InitialState);
+    const [error, setError] = useState(null)
+
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -24,19 +26,26 @@ const LoginForm = ({setIsAuthenticated, setUsername}) => {
         }))
     }
 
+    const handleError = (error) => {
+        setError(error); // Set the error message
+      };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try{
 
         const response = await JoblyApi.request("auth/token", formData, "post");
 
         console.log("Success!", response);
 
-        // console.log(localStorage.getItem('token'));
 
         const token = response.token
         const username = formData.username
 
-        localStorage.setItem('token', token);
+        // localStorage.setItem('token', token);
+        setToken(token)
         JoblyApi.setToken(token);
 
         setFormData(InitialState);
@@ -45,39 +54,52 @@ const LoginForm = ({setIsAuthenticated, setUsername}) => {
 
         navigate("/");
         
+        console.log("the username is", username);
 
-        try{
+       
 
         }catch(error){
-            console.error("registration error", error)
+            console.error("registration error", error);
+            handleError("Invalid login info. Please try again")
+            
         }
 
-    }
+    };
 
     return(
 
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username"> Username</label>
-            <input 
-                id="username"
-                type="text"
-                name="username"
-                placeholder="username"
-                value={formData.username}
-                onChange={handleChange}
-            /> 
-            <label htmlFor="password"> Password</label>
-            <input 
-                id="password"
-                type="password"
-                name="password"
-                placeholder="password"
-                value={formData.password}
-                onChange={handleChange}
-            /> 
+        <div className="login-form-div">
 
-            <button> Submit</button>
-        </form>
+             <form onSubmit={handleSubmit}>
+                <label htmlFor="username"> Username</label>
+                <input 
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                /> 
+
+            
+                    
+                <label htmlFor="password"> Password</label>
+                <input 
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                /> 
+
+                <button> Submit</button>
+
+                {error && <div className="error-message">{error}</div>}
+            </form>
+
+        </div>
+       
     )
 }
 

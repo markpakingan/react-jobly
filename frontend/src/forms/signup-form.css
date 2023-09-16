@@ -1,0 +1,8 @@
+.signup-form-div {
+    background-color: aqua;
+    justify-content: center;
+    display: flex;
+    height: 100vh;
+    align-content: center;
+    text-align: center;
+}

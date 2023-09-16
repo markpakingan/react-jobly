@@ -1,0 +1,8 @@
+.login-form-div {
+    background-color: aqua;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+}

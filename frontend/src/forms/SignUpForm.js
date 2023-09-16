@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import "./signup-form.css"
 const SignUpForm = ({setIsAuthenticated}) => {
 
     const navigate = useNavigate();
@@ -47,62 +47,65 @@ const SignUpForm = ({setIsAuthenticated}) => {
      
     }
     return(
-        <form onSubmit={handleSubmit}>
+        <div className="signup-form-div">
+            <form onSubmit={handleSubmit} >
 
-            <label htmlFor="username">Username</label>
-            <input 
-                id="username"
-                type="text"
-                name="username"
-                placeholder="username"
-                value={formData.username}
-                onChange={handleChange}
-            />
+                <label htmlFor="username">Username</label>
+                <input 
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                />
 
-            <label htmlFor="password">Password</label>
-            <input 
-                id="password"
-                type="password"
-                name="password"
-                placeholder="password"
-                value={formData.password}
-                onChange={handleChange}
-            />
+                <label htmlFor="password">Password</label>
+                <input 
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                />
 
-            <label htmlFor="firstName">First Name</label>
-            <input 
-                id="firstName"
-                type="text"
-                name="firstName"
-                placeholder="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-            />
+                <label htmlFor="firstName">First Name</label>
+                <input 
+                    id="firstName"
+                    type="text"
+                    name="firstName"
+                    placeholder="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                />
 
-            <label htmlFor="lastName">Last Name</label>
-            <input 
-                id="lastName"
-                type="text"
-                name="lastName"
-                placeholder="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-            />
+                <label htmlFor="lastName">Last Name</label>
+                <input 
+                    id="lastName"
+                    type="text"
+                    name="lastName"
+                    placeholder="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                />
 
-            <label htmlFor="email">Email</label>
-            <input 
-                id="email"
-                type="email"
-                name="email"
-                placeholder="email"
-                value={formData.email}
-                onChange={handleChange}
-            />
+                <label htmlFor="email">Email</label>
+                <input 
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
 
-            <button>Sign Up</button>
+                <button>Sign Up</button>
 
 
-        </form>
+            </form>
+        </div>
+
     )
 }
 
